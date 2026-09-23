@@ -8,6 +8,21 @@
 <title>Abraham Andika Satria — Experimental Fluid Dynamics</title>
 
 <style>
+
+.spec tbody + tbody tr:first-child td{border-top:1.5px solid var(--ink,#16232B);}
+
+.setup-sub{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin:1rem 0 .35rem;}
+.tbl-wrap{overflow-x:auto;}
+.spec{width:100%;border-collapse:collapse;font-size:.85rem;line-height:1.3;}
+.spec th,.spec td{padding:.28rem .5rem;border-bottom:1px solid var(--line,#d5dcdc);text-align:left;vertical-align:top;}
+.spec thead th{font-size:.75rem;font-weight:600;border-bottom:1.5px solid var(--ink,#16232B);}
+.spec .num{font-family:"IBM Plex Mono",ui-monospace,monospace;text-align:right;white-space:nowrap;}
+.spec .pair{border-left:1px solid var(--line,#d5dcdc);padding-left:.75rem;}
+.spec-list{display:grid;grid-template-columns:max-content 1fr;gap:.2rem .9rem;margin:0;font-size:.85rem;line-height:1.35;}
+.spec-list dt{font-weight:600;}
+.spec-list dd{margin:0;}
+.block .keyvals{margin:.25rem 0 .5rem;}
+
 .figgal-sub{margin:.2rem 0 0;font-size:.82rem;color:var(--ink-soft);}
 .figgal-title{margin:0 0 .6rem;font-family:var(--font-display,"IBM Plex Sans");font-weight:500;font-size:1rem;color:var(--ink);}
 .figgal{margin:0 0 1.5rem;}
@@ -289,6 +304,14 @@
         <span class="tag">computational · fluidic thrust vectoring · concept development</span>
         <h3>Computational Investigation of Multiple Injection Plenums and Porous Wall Injection in a Fluidic Thrust-Vectoring Axisymmetric Dual Throat Nozzle</h3>
         <div class="sub">Proposing a conceptual study of a superior fluidic thrust-vectoring method utilizing flow separation control, using the PAB3D solver.</div>
+      </div>
+      <span class="go">Read &rarr;</span>
+    </a>
+    <a class="hub-item" href="#project-4">
+      <div>
+        <span class="tag">gas compressor plant · control valve sizing and selection · recycling for capacity control</span>
+        <h3>Gas Compressor Capacity Control by Recycle Method</h3>
+        <div class="sub">Due to low suction pressure, the compressor experiences trip every so often. A recycle method that bypasses the gas from discharge to suction was proposed complete with the appropriate control valve, in order to prevent trips especially during startup unloading.</div>
       </div>
       <span class="go">Read &rarr;</span>
     </a>
@@ -639,8 +662,10 @@
         <li>Evaluate several thrust and thrust-vectoring performance parameters.</li>
         <li>Visualize nozzle flow for the different injection configurations to gain insight on flow separation in the DTN concept.</li>
       </ol></div>
-      <div class="block"><h4>Methodology in a nutshell</h4><ol>
+      <div class="block"><h4>Methodology in a nutshell</h4>
         <p>The proposed study will build upon the previous axisymmetric DTN studies, thereby following several design options from Deere et al. (2007).</p>
+        <ol>
+        
         <li> Nozzle configuration 302 (Fig. 5) is chosen due to its shorter nozzle length (less weight) and yet improved thrust performances, with only a small detriment on thrust-vectoring performances.</li>
         <li>The 60◦ circumferential injection angle (Fig. 6) is chosen for all configurations, due to the balanced compromise between thrust-vector angle and internal nozzle performance. </li>
         <li>There injection configurations consist of: seven fluidic injection plenums configuration and three porous wall injection configurations. (Fig. 7)</li>
@@ -658,6 +683,179 @@
         <li>Together with POST, another performance code called Oracle will be utilised to create Schlieren flow visualisation images from surface pressure data (Waithe and Deere, 2003). The Schlieren images will be used to observe an understand the flow separation and overall thrust and thrust-vectoring flow behaviour more comprehensively.</li>
       </ol></div>
       <div class="block"><h4>Concluding Remarks</h4><p>This study proposes an investigation of potential benefits of multiple injection plenums and porous wall injection in order to improve the thrust-vectoring performance of an axisymmetric Dual Throat Nozzle. Ten injection configurations is to be evaluated using the unsteady RANS solver PAB3D. The effects of multiple injection plenums and porous wall injection on flow separation control can be evaluated using performance parameters: pitch and yaw thrust-vector angles, pitch and yaw thrustvectoring efficiencies, system thrust ratio, and nozzle discharge coefficient. Furthermore, the internal flow can be visually analysed using Schlieren images constructed from the post processor code POST and Oracle.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 4 -->
+<section class="project wrap" id="project-4">
+  <div class="project-head">
+    <div class="kicker">Project 04 · internship engineering project</div>
+    <h2>Gas Compressor Capacity Control by Recycle Method</h2>
+    <p class="summary">How is a recycle method solution implemented for a gas compressor suffering from low suction pressure, and what control valve requirements must be satisfied?</p>
+  </div>
+
+  <div class="proj-body">
+    <div>
+      
+      <figure class="figure">
+        <img class="figimg" src="images/ReciprocatingCompressor3.png" alt="">
+        <figcaption class="figcap"><b>Fig. 1</b> — Reciprocating Gas Compressor</figcaption>
+      </figure>
+
+      <figure class="figure">
+        <img class="figimg" src="images/gas_compressor_plant.png" alt="">
+        <figcaption class="figcap"><b>Fig. 2</b> — Simplified Process Diagram of the Gas Compressor Plant</figcaption>
+      </figure>
+
+      <figure class="figure">
+        <img class="figimg" src="images/control_valve_dbq.png" alt="">
+        <figcaption class="figcap"><b>Fig. 3</b> — 2-inch Class 900 control valve (DBQ type)</figcaption>
+      </figure>
+
+      <figure class="figure">
+        <div class="tbl-wrap figtbl">
+          <table class="spec">
+            <thead><tr><th>Valve opening (% travel)</th><th class="num">20</th><th class="num">30</th></tr></thead>
+            <tbody>
+              <tr><td>Control valve coefficient <i>C</i><sub>v</sub></td><td class="num">1.39</td><td class="num">1.90</td></tr>
+              <tr><td>Pressure drop ratio factor <i>x</i><sub>T</sub></td><td class="num">0.582</td><td class="num">0.623</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figcaption class="figcap"><b>Table 1</b> — Flow coefficients of the 2-inch valve at 20% and 30% travel (manufacturer data).</figcaption>
+      </figure>
+
+      <figure class="figure">
+        <div class="tbl-wrap figtbl">
+          <table class="spec">
+            <thead><tr><th>Property</th><th class="num">Value</th><th class="pair">Property</th><th class="num">Value</th></tr></thead>
+            <tbody>
+              <tr><td>Molar mass <i>M</i> (g/mol)</td><td class="num">41.77775</td><td class="pair">Pseudo-critical pressure <i>p</i><sub>pc</sub> (psia)</td><td class="num">799.7607</td></tr>
+              <tr><td>Gas constant <i>R</i> (kJ/kg&middot;K)</td><td class="num">0.199005</td><td class="pair">Pseudo-critical temp. <i>T</i><sub>pc</sub> (&deg;F)</td><td class="num">99.46292</td></tr>
+              <tr><td><i>c</i><sub>p</sub> (kJ/kg&middot;K)</td><td class="num">1.269296</td><td class="pair">Reduced pressure <i>p</i><sub>r</sub></td><td class="num">0.50015</td></tr>
+              <tr><td><i>c</i><sub>v</sub> (kJ/kg&middot;K)</td><td class="num">1.070469</td><td class="pair">Reduced temp. <i>T</i><sub>r</sub></td><td class="num">2.46323</td></tr>
+              <tr><td>Specific heat ratio <i>k</i></td><td class="num">1.185738</td><td class="pair"></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figcaption class="figcap"><b>Table 2</b> — Calculated properties of the gas mixture.</figcaption>
+      </figure>
+      
+      <figure class="figure">
+        <div class="tbl-wrap figtbl">
+          <table class="spec">
+            <thead><tr><th></th><th class="num">Without reducer</th><th class="num">With reducer</th></tr></thead>
+            <tbody>
+              <tr><td><i>x</i><sub>T</sub> at 20% travel</td><td class="num">0.582</td><td class="num">0.582</td></tr>
+              <tr><td><i>C</i><sub>v</sub> at 20% travel</td><td class="num">1.39</td><td class="num">1.39</td></tr>
+              <tr><td><i>F</i><sub>P</sub></td><td class="num">1</td><td class="num">0.999969</td></tr>
+              <tr><td><i>x</i><sub>TP</sub></td><td class="num">0.582</td><td class="num">0.58203</td></tr>
+            </tbody>
+            <tbody>
+              <tr><td><i>x</i><sub>choked</sub></td><td class="num">0.492928</td><td class="num">0.492954</td></tr>
+              <tr><td><i>x</i><sub>sizing</sub></td><td class="num">= <i>x</i><sub>choked</sub></td><td class="num">= <i>x</i><sub>choked</sub></td></tr>
+              <tr><td>Expansion factor <i>Y</i></td><td class="num">0.666667</td><td class="num">0.666667</td></tr>
+              <tr><td>Required <i>C</i><sub>v</sub></td><td class="num">1.444011</td><td class="num">1.444019</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figcaption class="figcap"><b>Table 3</b> — Second iteration of control valve sizing, with and without reducer.</figcaption>
+      </figure>
+
+    </div>
+
+    
+    
+
+    <div>
+      <div class="block"><h4>Motivation</h4><p>Conducted at Chevron Pacific Indonesia in Riau, the project focuses on a gas compressor (Fig.1) plant with a primary function of producing condensate gas. At the time, the gas well is unable to supply a process flow with enough pressure to meet the compressor working parameters. Due to low suction pressure, compressor will experience trips every so often, or even fail to start altogether. Thus, there is a necessity to control its capacity in order to keep the compressor working and produce condensate.</p><p>One of the most fundamental method of capacity control is recycling or bypassing the gas from discharge to suction through piping. To control the flow or pressure, the recycle pipeline has to be modified with a control valve and a controller. Nevertheless, recycle has its weaknesses, such as being inefficient since it must compress the same gas repeatedly. Also, the temperature increase should be countered by installing expansion or cooling devices on the recycle line to prevent the compressor from overheating. The most practical mode of recycling is for small capacity control or for a short period on startup unloading. However, it can be used at any range to keep the compressor working.</p></div>
+      <div class="block"><h4>Objectives in a nutshell</h4>
+        <ol>
+          <li>Design a recycle process by creating a recycle line from the discharge scrubber to the compressor suction line.</li>
+          <li>Conduct control valve sizing for a two-inch Class 900 water-steam control valve to determine its applicability for the recycle process and handling gas mixture flow.</li>
+          <li>Compile and analyze other aspects associated with the recycle process and control valve, such as installation, fail-safe mode, and repair.</li>
+        </ol>
+      </div>
+      <div class="block"><h4>Methodology in a nutshell</h4>
+        <ol>
+          <li>Field visit to the Gathering Station is conducted to directly study the compressor startup procedure and troubleshooting. Further discussions are also conducted about various safety valves, piping, gas cooler, gas engine and its components, scrubber, gas boot, separator, and most importantly the compressor and its components.</li>
+          <li>Volumetric flow rate of gas mixture is calculated, and control valve sizing is conducted on the basis of the Control Valve Handbook by Emerson</li>
+          <li>Leakage rating of the control valve based on the working parameters is conducted in order to determine whether it is capable to handle gas mixture instead of its original steam purpose.</li>
+          <li>The appropriate fail-safe mode for actuator power failure is determined by analyzing working parameters of various components and known phenomena as presented in the Process and Instrumentation Diagram (P&ID), seen in Fig. 2.</li>
+          <li>P&ID, Instrument Hook-Up Drawing, and Isometric Drawing documents were compiled and summarized for the purpose of control valve installation.</li>
+          <li>Control valve service report is analyzed and improvements were suggested for future check and maintenance.</li>
+        </ol>
+      </div>
+      <div class="block"><h4>Setup</h4>
+
+        <div class="setup-sub">Reciprocating compressor unit</div>
+        <div class="tbl-wrap">
+          <table class="spec">
+            <thead><tr><th></th><th class="num">Throws</th><th class="num">Bore (in)</th><th class="num">Stroke (in)</th></tr></thead>
+            <tbody>
+              <tr><td>Gas engine</td><td class="num">&ndash;</td><td class="num">8.5</td><td class="num">8.5</td></tr>
+              <tr><td>Gas compressor</td><td class="num">4</td><td class="num">9.25 / 19.5 / 15.25 / 19.5</td><td class="num">4.5</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="setup-sub">2-inch Class 900 control valve</div>
+        <dl class="spec-list">
+          <dt>Body</dt><dd>Single-port globe, cage-guided</dd>
+          <dt>Plug action</dt><dd>Push-down-to-close</dd>
+          <dt>Size &amp; ends</dt><dd>2-inch, flanged</dd>
+          <dt>Rating</dt><dd>ANSI Class 900, body and end connections</dd>
+          <dt>Pressure / temp.</dt><dd>Per ANSI Class 900; max. inlet set by RF flange rating</dd>
+          <dt>Shutoff</dt><dd>Class IV</dd>
+          <dt>Packing</dt><dd>PTFE V-ring</dd>
+          <dt>Gaskets</dt><dd>316 SST</dd>
+        </dl>
+
+        <div class="setup-sub">Gas sample analysis</div>
+        <div class="keyvals">
+          <span class="kv"><b>T</b> 148 &deg;F</span><span class="kv"><b>P</b> 3.4 psi</span><span class="kv"><b>MW</b> 42.23 (dry, calc.)</span>
+        </div>
+        <div class="tbl-wrap">
+          <table class="spec">
+            <thead><tr><th>Component</th><th class="num">mol %</th><th class="pair">Component</th><th class="num">mol %</th></tr></thead>
+            <tbody>
+              <tr><td>Nitrogen</td><td class="num">3.21</td><td class="pair">n-Butane</td><td class="num">5.83</td></tr>
+              <tr><td>Oxygen</td><td class="num">0.11</td><td class="pair">i-Pentane</td><td class="num">2.67</td></tr>
+              <tr><td>Methane</td><td class="num">20.59</td><td class="pair">n-Pentane</td><td class="num">2.99</td></tr>
+              <tr><td>Carbon dioxide</td><td class="num">43.18</td><td class="pair">Hexanes</td><td class="num">3.37</td></tr>
+              <tr><td>Ethane</td><td class="num">4.30</td><td class="pair">Heptanes</td><td class="num">1.28</td></tr>
+              <tr><td>Propane</td><td class="num">9.45</td><td class="pair">Octanes</td><td class="num">0.20</td></tr>
+              <tr><td>i-Butane</td><td class="num">2.82</td><td class="pair">Nonanes</td><td class="num">0</td></tr>
+              <tr><td></td><td></td><td class="pair">Decanes</td><td class="num">0</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      
+      
+      <div class="block"><h4>Control Valve Sizing in a nutshell</h4>
+        <p>For compressible fluids, a five-step procedure is required:</p>
+        <ol>
+          
+          <li>Specify variables required for sizing.</li>
+          <li>Determine equation constants.</li>
+          <li>Determine piping geometry factor and pressure drop ratio.</li>
+          <li>Determine pressure drop ratio and expansion factor.</li>
+          <li>Calculate control valve sizing factor Cv.</li>
+        </ol>
+        <p>After a series of calculations, the final control valve sizing factor is obtained when the value is close or between rated values. Table 1 provides Cv = 1.39 for 20% travel and Cv = 1.9 for 30% travel, whereas the calculation for both cases (with or without reducer) achieves a required Cv = 1.44. Hence, the control valve is applicable between 20-30% travel.</p>
+      </div>
+      <div class="block"><h4>Concluding Remarks</h4>
+        <ol>
+          <li>The two-inch Class 900 control valve is capable of handling the designed recycle process</li>
+          <li>The two-inch Class 900 control valve is applicable for handling gas mixture as far as the available proofs justify, although further investigation should be conducted to ensure full compatibility.</li>
+          <li>The proper fail-safe mode for the two-inch Class 900 control valve is fail-closed</li>
+          <li>Documentation requirements for a control valve installation are Instrument Hook-Up Drawing, Piping and Instrumentation Diagram, and Isometric Drawing.</li>
+          <li>Service report provides information on problems and their respective repair actions, and test results for an equipment.</li>
+        </ol></div>
     </div>
   </div>
 </section>
